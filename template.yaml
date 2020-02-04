@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  alexa itteq
+  今日イッテQがあるか答えるAlexaスキル
+
+Globals:
+  Function:
+    Timeout: 30
+
+Resources:
+  AlexaItteqFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: app.handler
+      Runtime: nodejs12.x
