@@ -15,3 +15,6 @@ Resources:
       CodeUri: src/
       Handler: app.handler
       Runtime: nodejs12.x
+      Events:
+        Alexa:
+          Type: AlexaSkill
