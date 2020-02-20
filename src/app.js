@@ -17,11 +17,11 @@ const LaunchRequestHandler = {
     const response = await Axios.get(Url)
     const $ = Cheerio.load(response.data)
     const programInfos = $('.programlist li').map((index, elm) => {
-      const left = $(elm).find('div.leftarea')
-      const right = $(elm).find('div.rightarea')
-      const dateString = $(left).find('p:first-of-type > em').text()
-      const timeString = $(left).find('p:nth-of-type(2) > em').text()
-      const titleString = $(right).find('p:first-of-type > a').text()
+      const left = $('div.leftarea', elm)
+      const right = $('div.rightarea', elm)
+      const dateString = $('p:first-of-type > em', left).text()
+      const timeString = $('p:nth-of-type(2) > em', left).text()
+      const titleString = $('p:first-of-type > a', right).text()
       return {
         date: dateString,
         time: timeString,
