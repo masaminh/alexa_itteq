@@ -2,6 +2,10 @@
   "name": "alexa_itteq",
   "license": "MIT",
   "version": "1.0.0",
+  "scripts": {
+    "build": "mkdir -p ./dist && cp src/app.js package.json ./dist && sam build",
+    "deploy": "sam deploy"
+  },
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",

@@ -12,7 +12,7 @@ Resources:
   AlexaItteqFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/
+      CodeUri: dist/
       Handler: app.handler
       Runtime: nodejs12.x
       Events:
