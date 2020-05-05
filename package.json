@@ -3,18 +3,24 @@
   "license": "MIT",
   "version": "1.0.0",
   "scripts": {
-    "build": "mkdir -p ./dist && cp src/app.js package.json ./dist && sam build",
+    "build": "tsc && cp package.json ./dist && sam build",
     "deploy": "sam deploy"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.18",
+    "@types/moment-timezone": "^0.5.13",
+    "@types/node": "^13.13.4",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
     "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "@eai/moji": "^1.2.0",
