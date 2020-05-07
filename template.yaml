@@ -7,14 +7,37 @@ Description: >
 Globals:
   Function:
     Timeout: 30
+    Runtime: nodejs12.x
+    CodeUri: dist/
 
 Resources:
   AlexaItteqFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: dist/
-      Handler: app.handler
-      Runtime: nodejs12.x
+      Handler: alexa.handler
       Events:
         Alexa:
           Type: AlexaSkill
+        Scheduled:
+          Type: Schedule
+          Properties:
+            Schedule: rate(5 minutes)
+      Environment:
+        Variables:
+          REGION: region
+          BUCKET: bucket
+          KEY: key
+  PrefetchFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: prefetch.handler
+      Events:
+        PrefetchEvent:
+          Type: Schedule
+          Properties:
+            Schedule: rate(1 hour)
+      Environment:
+        Variables:
+          REGION: region
+          BUCKET: bucket
+          KEY: key
