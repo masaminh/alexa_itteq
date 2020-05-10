@@ -18,7 +18,6 @@ const Moji = require('@eai/moji');  // eslint-disable-line
 // 最後のa=10が札幌を示している
 const Url =
   'https://tv.yahoo.co.jp/search/?q=%E3%82%A4%E3%83%83%E3%83%86Q&a=10';
-const Title = '世界の果てまでイッテQ!';
 
 // eslint-disable-next-line import/prefer-default-export
 export const handler: ScheduledHandler = async event => {
@@ -41,10 +40,7 @@ export const handler: ScheduledHandler = async event => {
           .toString()
       };
     })
-    .get()
-    .filter(x => x.title.indexOf(Title) === 0);
-  // 特番とかだと違う番組が引っかかることがあるので、番組名先頭に「世界の果てまでイッテQ!」
-  // と書かれているものを対象番組として扱うことにする
+    .get();
 
   // 今日あるかどうかの判断を行う
   const timestamp = moment.default(event.time);
