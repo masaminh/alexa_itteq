@@ -23,16 +23,22 @@ const Url =
 export const handler: ScheduledHandler = async event => {
   const response = await Axios.get(Url);
   const $ = Cheerio.load(response.data);
-  const programInfos = $('.programlist li')
+  const programInfos = $('.programListItem')
     .map((index, elm) => {
-      const left = $('div.leftarea', elm);
-      const right = $('div.rightarea', elm);
-      const dateString = $('p:first-of-type > em', left).text();
-      const timeString = $('p:nth-of-type(2) > em', left).text();
-      const titleString = $('p:first-of-type > a', right).text();
+      const fromtime = $(
+        'time.scheduleText:first-of-type > span:nth-of-type(3)',
+        elm
+      ).text();
+      const totime = $('span.scheduleTextTimeEnd', elm).text();
+      const date = $(
+        'time.scheduleText:first-of-type > span:first-of-type',
+        elm
+      ).text();
+      const titleString = $('a.programListItemTitleLink').text();
       return {
-        date: dateString,
-        time: timeString,
+        date,
+        fromtime,
+        totime,
         // 番組表の文字列、全角半角の混ざり方が不規則なので、英数は半角、カナは全角に揃える
         title: Moji(titleString)
           .convert('ZEtoHE')
@@ -52,8 +58,7 @@ export const handler: ScheduledHandler = async event => {
       // 今日ある場合は、番組詳細まで返す
       const subStr = filtered
         .map(x => {
-          const timeString = x.time.replace('～', 'から');
-          const result = `${timeString}に${x.title}が`;
+          const result = `${x.fromtime}から${x.totime}に${x.title}が`;
           return result;
         })
         .join('、');
@@ -63,10 +68,9 @@ export const handler: ScheduledHandler = async event => {
       // 今日はないけど、明日以降見つかったら、日付と時刻を返す。
       const subStr = programInfos
         .map(x => {
-          const result = `${x.date.replace('/', '月')}日${x.time.replace(
-            '～',
-            'から'
-          )}`;
+          const result = `${x.date.replace('/', '月')}日${x.fromtime}から${
+            x.totime
+          }`;
           return result;
         })
         .join('と、');
