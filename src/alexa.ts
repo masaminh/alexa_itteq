@@ -36,7 +36,10 @@ const LaunchRequestHandler: RequestHandler = {
     const s3data = await s3.getObject(paramGetObject).promise();
     const speechText = iconv.decode(s3data.Body as Buffer, 'utf-8');
 
-    return handlerInput.responseBuilder.speak(speechText).getResponse();
+    return handlerInput.responseBuilder
+      .speak(speechText)
+      .withSimpleCard('今日イッテQある?', speechText)
+      .getResponse();
   }
 };
 
