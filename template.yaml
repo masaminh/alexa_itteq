@@ -27,17 +27,3 @@ Resources:
           REGION: region
           BUCKET: bucket
           KEY: key
-  PrefetchFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: prefetch.handler
-      Events:
-        PrefetchEvent:
-          Type: Schedule
-          Properties:
-            Schedule: rate(1 hour)
-      Environment:
-        Variables:
-          REGION: region
-          BUCKET: bucket
-          KEY: key
