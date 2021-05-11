@@ -8,8 +8,6 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.51",
-    "@types/cheerio": "^0.22.18",
-    "@types/moment-timezone": "^0.5.13",
     "@types/node": "^13.13.4",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
@@ -25,14 +23,10 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@eai/moji": "^1.2.0",
     "ask-sdk-core": "^2.7.0",
     "ask-sdk-model": "^1.25.1",
     "aws-sdk": "2.631.0",
     "aws-xray-sdk": "^3.0.0",
-    "axios": "^0.21.1",
-    "cheerio": "^1.0.0-rc.3",
-    "iconv-lite": "^0.5.1",
-    "moment-timezone": "^0.5.27"
+    "iconv-lite": "^0.5.1"
   }
 }
