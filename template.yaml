@@ -7,7 +7,7 @@ Description: >
 Globals:
   Function:
     Timeout: 30
-    Runtime: nodejs12.x
+    Runtime: nodejs16.x
     CodeUri: dist/
 
 Resources:
