@@ -4,6 +4,14 @@ Description: >
   alexa itteq
   今日イッテQがあるか答えるAlexaスキル
 
+Parameters:
+  Region:
+    Type: String
+  Bucket:
+    Type: String
+  Key:
+    Type: String
+
 Globals:
   Function:
     Timeout: 30
@@ -24,6 +32,9 @@ Resources:
             Schedule: rate(5 minutes)
       Environment:
         Variables:
-          REGION: region
-          BUCKET: bucket
-          KEY: key
+          REGION:
+            Ref: Region
+          BUCKET:
+            Ref: Bucket
+          KEY:
+            Ref: Key
