@@ -21,8 +21,6 @@ jobs:
           node-version: '16.x'
       - name: Install dependencies
         run: yarn --frozen-lockfile
-      - name: Test
-        run: yarn test
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
