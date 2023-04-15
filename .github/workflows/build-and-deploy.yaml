@@ -46,4 +46,4 @@ jobs:
           role-session-name: AlexaItteq
       - name: Deploy
         if: startsWith(github.ref, 'refs/heads/master')
-        run: sam deploy --stack-name alexa-itteq --capabilities CAPABILITY_IAM --parameter-overrides "Region=${{ secrets.REGION }} Bucket=${{ secrets.BUCKET }} Key=${{ secrets.KEY }}" --no-fail-on-empty-changeset --no-confirm-changeset
+        run: sam deploy --stack-name alexa-itteq --resolve-s3 --capabilities CAPABILITY_IAM --parameter-overrides "Region=${{ secrets.REGION }} Bucket=${{ secrets.BUCKET }} Key=${{ secrets.KEY }}" --no-fail-on-empty-changeset --no-confirm-changeset
